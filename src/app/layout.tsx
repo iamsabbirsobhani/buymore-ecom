@@ -3,6 +3,7 @@ import '@/styles/globals.css';
 import { Providers } from '@/src/app/providers';
 import Navbar from '@/components/Navbar';
 import localFont from 'next/font/local';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Buy More',
@@ -25,6 +26,7 @@ export default async function RootLayout({
         <Providers>
           <Navbar />
           <div>{children}</div>
+          <Footer />
         </Providers>
       </body>
     </html>
