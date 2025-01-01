@@ -39,14 +39,15 @@ export default function HeroSection() {
 
       <section className=" mt-[10vh] relative">
         <div>
-          <div className="max-w-[70vw] m-auto relative">
+          <div className="max-w-[70vw] m-auto relative ">
+            <div className="absolute bg-gradient-to-t from-gray-700/30 to-gray-50/0 top-0 bottom-0 left-0 right-0"></div>
             <Image
               src="/hero/1.png"
               alt="Hero Image"
               width={1920}
               height={1080}
             />
-            <div className="absolute left-10 top-0 bottom-0 flex justify-center flex-col">
+            <div className="absolute left-10 top-0 bottom-0 flex justify-center flex-col ">
               <h1 className="text-4xl tracking-wide font-bold text-gray-50">
                 Denim & animal print
               </h1>
