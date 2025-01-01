@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function HeroSection() {
   return (
     <div className="hero-section">
@@ -32,6 +34,27 @@ export default function HeroSection() {
           <p className="text-center relative top-2 text-xs">
             *T&C Apply. Offers may vary in-store and online.
           </p>
+        </div>
+      </section>
+
+      <section className=" mt-[10vh] relative">
+        <div>
+          <div className="max-w-[70vw] m-auto relative">
+            <Image
+              src="/hero/1.png"
+              alt="Hero Image"
+              width={1920}
+              height={1080}
+            />
+            <div className="absolute left-10 top-0 bottom-0 flex justify-center flex-col">
+              <h1 className="text-4xl tracking-wide font-bold text-gray-50">
+                Denim & animal print
+              </h1>
+              <button className="bg-gray-50 w-fit mt-3 p-2 hover:bg-gray-300">
+                Shop now
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
