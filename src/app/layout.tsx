@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Providers } from '@/src/app/providers';
+import Navbar from '@/components/Navbar';
 
 const plusJakartaSansFont = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
@@ -19,6 +20,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${plusJakartaSansFont.className} `}>
         <Providers>
+          <Navbar />
           <div>{children}</div>
         </Providers>
       </body>
