@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function HeroSection() {
   return (
     <div className="hero-section">
-      <section className="bg-[#c9002e] antialiased h-[70vh] w-[70vw] flex justify-center items-center m-auto mt-[5vh] flex-col">
+      <section className="bg-[#c9002e] antialiased h-[70vh] w-[70vw] flex justify-center items-center m-auto mt-[5vh] flex-col p-5">
         <div>
           <h1 className="font-extrabold text-5xl text-gray-50 text-center">
             Discover More. Save More. Buy More.
