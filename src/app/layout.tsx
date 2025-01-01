@@ -1,15 +1,18 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Providers } from '@/src/app/providers';
 import Navbar from '@/components/Navbar';
-
-const plusJakartaSansFont = Plus_Jakarta_Sans({ subsets: ['latin'] });
+import localFont from 'next/font/local';
 
 export const metadata: Metadata = {
   title: 'Buy More',
   description: 'Buy More',
 };
+
+const hmSansRegular = localFont({
+  src: './fonts/HM-Sans-Regular.ttf',
+  display: 'swap',
+});
 
 export default async function RootLayout({
   children,
@@ -18,7 +21,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSansFont.className} `}>
+      <body className={`${hmSansRegular.className} `}>
         <Providers>
           <Navbar />
           <div>{children}</div>
