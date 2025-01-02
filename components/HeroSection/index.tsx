@@ -58,6 +58,30 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
+      <section className=" mt-[10vh] relative">
+        <div>
+          <div className="max-w-[70vw] m-auto relative ">
+            <div className="absolute bg-gradient-to-t from-gray-700/30 to-gray-50/0 top-0 bottom-0 left-0 right-0"></div>
+            <Image
+              src="/hero/2.png"
+              alt="Hero Image"
+              width={1920}
+              height={1080}
+            />
+            <div className="absolute left-10  bottom-10 flex justify-center flex-col ">
+              <h1 className="text-4xl tracking-wide font-bold text-gray-50">
+                Startorial update
+              </h1>
+              <p className="text-gray-50 text-xl mt-3 mb-3">
+                Relaxed minimalism for a wider silhouette.
+              </p>
+              <button className="bg-gray-50 w-fit mt-3 p-2 hover:bg-gray-300">
+                Shop now
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
