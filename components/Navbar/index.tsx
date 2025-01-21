@@ -93,12 +93,16 @@ export default function Navbar() {
       </section>
       <section className="mt-[4vh]">
         <ul className="flex justify-center items-center">
-          <li className="m-2 hover:underline underline-offset-2 cursor-pointer">
-            Women
-          </li>
-          <li className="m-2 hover:underline underline-offset-2 cursor-pointer">
-            Men
-          </li>
+          <Link href={'/products/women'}>
+            <li className="m-2 hover:underline underline-offset-2 cursor-pointer">
+              Women
+            </li>
+          </Link>
+          <Link href={'/products/men'}>
+            <li className="m-2 hover:underline underline-offset-2 cursor-pointer">
+              Men
+            </li>
+          </Link>
           <li className="m-2 hover:underline underline-offset-2 cursor-pointer">
             Kids
           </li>
