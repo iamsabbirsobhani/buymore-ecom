@@ -29,10 +29,7 @@ export default async function ProductContainer({ gender }: { gender: string }) {
             productPrice: number;
             productImages: ProductImage[];
           }) => (
-            <Link
-              href={`/products/${gender}/details/${product.id}`}
-              key={product.id}
-            >
+            <Link href={`/products/details/${product.id}`} key={product.id}>
               <ProductCard
                 key={product.id}
                 imgUrl={product.productImages[1]?.formats?.small?.url || ''}
