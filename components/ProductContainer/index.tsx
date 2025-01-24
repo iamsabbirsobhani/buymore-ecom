@@ -18,18 +18,22 @@ const getProducts = async (gender: string) => {
 
 export default async function ProductContainer({ gender }: { gender: string }) {
   const products = await getProducts(gender);
-
+  // console.log({ products: products.data });
   return (
     <div>
       <div className="flex justify-center flex-wrap">
         {products.data.map(
           (product: {
             id: string;
+            documentId: string;
             productName: string;
             productPrice: number;
             productImages: ProductImage[];
           }) => (
-            <Link href={`/products/details/${product.id}`} key={product.id}>
+            <Link
+              href={`/products/details/${product.documentId}`}
+              key={product.id}
+            >
               <ProductCard
                 key={product.id}
                 imgUrl={product.productImages[1]?.formats?.small?.url || ''}
