@@ -24,12 +24,14 @@ export default function Navbar() {
         </ul>
 
         <div>
-          <Image
-            src="/images/buy-more-logo-2px.png"
-            alt="Logo"
-            width={200}
-            height={100}
-          />
+          <Link href="/">
+            <Image
+              src="/images/buy-more-logo-2px.png"
+              alt="Logo"
+              width={200}
+              height={100}
+            />
+          </Link>
         </div>
 
         <ul className="flex w-fit">
