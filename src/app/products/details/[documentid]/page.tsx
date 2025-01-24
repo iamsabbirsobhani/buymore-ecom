@@ -27,7 +27,7 @@ export default async function ProductDetails({ params }: Props) {
   // console.log({ product: product.data });
   // console.log({ inventories: inventories.data });
   return (
-    <div className="max-w-7xl m-auto">
+    <div className="max-w-7xl m-auto mt-[5vh]">
       <div className="grid grid-cols-2 content-center">
         <section>
           <Image
@@ -38,10 +38,14 @@ export default async function ProductDetails({ params }: Props) {
           />
         </section>
         <section>
-          <h1>{product.data[0].productName}</h1>
-          <p>${product.data[0].productPrice}</p>
-          <p>Size</p>
-          <select name="" id="">
+          <h1 className="text-gray-700 font-light text-base">
+            {product.data[0].productName}
+          </h1>
+          <p className="mt-2 font-bold text-base text-gray-600">
+            $&nbsp;{product.data[0].productPrice}.00
+          </p>
+          <p className="font-bold text-sm mt-2">Size:</p>
+          <select name="" id="" className="border w-60 p-2 px-4 mt-2">
             {inventories.data.map(
               (inventory: { id: string; size: { sizeName: string } }) => (
                 <option key={inventory.id} value={inventory.size.sizeName}>
@@ -50,8 +54,10 @@ export default async function ProductDetails({ params }: Props) {
               ),
             )}
           </select>
-          <div>
-            <button className="uppercase">Add to bag</button>
+          <div className="mt-3">
+            <button className="uppercase bg-green-700 p-2 text-gray-50 px-3 w-60">
+              Add to bag
+            </button>
           </div>
         </section>
       </div>
