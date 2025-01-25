@@ -30,7 +30,9 @@ export default async function ProductDetails({ params }: Props) {
   const productDocumentID = (await params).documentid;
   const product = await getProduct(productDocumentID);
   const inventories = await getInventories(productDocumentID);
-  // console.log({ product: product.data });
+  // console.log({
+  //   product: product.data[0].productLookAfterMe[0].children[0].text,
+  // });
   // console.log({ inventories: inventories.data });
   return (
     <div className="max-w-7xl m-auto mt-[5vh]">
@@ -85,36 +87,108 @@ export default async function ProductDetails({ params }: Props) {
               <Accordion>
                 <AccordionSummary>Product Details</AccordionSummary>
                 <AccordionDetails>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  {product.data.map(
+                    (product: {
+                      id: string;
+                      documentId: string;
+                      productName: string;
+                      productPrice: number;
+                      ProductDescriptions: { children: { text: string }[] }[];
+                    }) => (
+                      <p key={product.id}>
+                        {product.ProductDescriptions.map(
+                          (description: { children: { text: string }[] }) =>
+                            description.children.map(
+                              (child: { text: string }, index: number) => (
+                                <span key={index}>{child.text}&nbsp;</span>
+                              ),
+                            ),
+                        )}
+                      </p>
+                    ),
+                  )}
                 </AccordionDetails>
               </Accordion>
               <Accordion>
                 <AccordionSummary>Brand</AccordionSummary>
                 <AccordionDetails>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  {product.data[0].productBrand.map(
+                    (
+                      brand: { id: string; children: { text: string }[] },
+                      index: number,
+                    ) => (
+                      <p key={index}>
+                        {brand.children.map(
+                          (child: { text: string }, index: number) => (
+                            <span key={index}>{child.text}&nbsp;</span>
+                          ),
+                        )}
+                      </p>
+                    ),
+                  )}
                 </AccordionDetails>
               </Accordion>
               <Accordion>
                 <AccordionSummary>Size & Fit</AccordionSummary>
                 <AccordionDetails>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  {product.data[0].productSizeAndFit[0].children[0].text}
+                  {product.data.map(
+                    (product: {
+                      id: string;
+                      documentId: string;
+                      productName: string;
+                      productPrice: number;
+                      productSizeAndFit: {
+                        children: { text: string }[];
+                      }[];
+                    }) => (
+                      <p key={product.id}>
+                        {product.productSizeAndFit.map(
+                          (sizeAndFit: { children: { text: string }[] }) =>
+                            sizeAndFit.children.map(
+                              (child: { text: string }, index: number) => (
+                                <span key={index}>{child.text}&nbsp;</span>
+                              ),
+                            ),
+                        )}
+                      </p>
+                    ),
+                  )}
                 </AccordionDetails>
               </Accordion>
               <Accordion>
                 <AccordionSummary>Look After Me</AccordionSummary>
                 <AccordionDetails>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  {product.data[0].productLookAfterMe[0].children[0].text}
+                  {product.data.map(
+                    (product: {
+                      id: string;
+                      documentId: string;
+                      productName: string;
+                      productPrice: number;
+                      productLookAfterMe: {
+                        children: { text: string }[];
+                      }[];
+                    }) => (
+                      <p key={product.id}>
+                        {product.productLookAfterMe.map(
+                          (lookAfterMe: { children: { text: string }[] }) =>
+                            lookAfterMe.children.map(
+                              (child: { text: string }, index: number) => (
+                                <span key={index}>{child.text}&nbsp;</span>
+                              ),
+                            ),
+                        )}
+                      </p>
+                    ),
+                  )}
                 </AccordionDetails>
               </Accordion>
               <Accordion>
                 <AccordionSummary>About Me</AccordionSummary>
                 <AccordionDetails>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  This web application is built with Next.js, Tailwind CSS, and
+                  built with love by Sabbir Sobhani.
                 </AccordionDetails>
               </Accordion>
             </AccordionGroup>
