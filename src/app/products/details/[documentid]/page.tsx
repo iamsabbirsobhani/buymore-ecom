@@ -44,12 +44,36 @@ export default async function ProductDetails({ params }: Props) {
           <p className="mt-2 font-bold text-base text-gray-600">
             $&nbsp;{product.data[0].productPrice}.00
           </p>
+          <div className="lowercase font-light text-lg flex items-center mt-3">
+            <h1 className="text-sm font-bold mr-2 uppercase">COLOUR:</h1>
+            {Array.from(
+              new Set(
+                inventories.data.map(
+                  (inventory: {
+                    id: string;
+                    product_color: { colorName: string; id: string };
+                  }) => inventory.product_color.colorName,
+                ),
+              ) as Set<string>,
+            ).map((uniqueColor: string) => (
+              <div key={uniqueColor} className="ml-2">
+                <div
+                  className={`bg-[${uniqueColor.toLowerCase()}] border w-10 h-10`}
+                  title={uniqueColor}
+                ></div>
+              </div>
+            ))}
+          </div>
           <p className="font-bold text-sm mt-2">Size:</p>
           <select name="" id="" className="border w-60 p-2 px-4 mt-2">
             {inventories.data.map(
-              (inventory: { id: string; size: { sizeName: string } }) => (
+              (inventory: {
+                id: string;
+                size: { sizeName: string; id: string };
+                quantity: number;
+              }) => (
                 <option key={inventory.id} value={inventory.size.sizeName}>
-                  {inventory.size.sizeName}
+                  {inventory.size.sizeName} &nbsp; {inventory.quantity} in stock
                 </option>
               ),
             )}
