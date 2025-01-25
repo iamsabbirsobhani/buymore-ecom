@@ -1,11 +1,10 @@
-import Image from 'next/image';
 import Accordion from '@mui/joy/Accordion';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import AccordionGroup from '@mui/joy/AccordionGroup';
 import AccordionSummary from '@mui/joy/AccordionSummary';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-
+import ProductImageViewer from '@/components/ProductImageViewer';
 type Props = {
   params: Promise<{ documentid: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -39,12 +38,13 @@ export default async function ProductDetails({ params }: Props) {
       <div className="grid grid-cols-2 content-center gap-10">
         <section className="">
           <div className="max-w-sm relative ml-auto mr-3">
-            <Image
+            <ProductImageViewer product={product.data} />
+            {/* <Image
               src={product.data[0].productImages[1]?.formats?.small?.url || ''}
               alt={product.data[0].productName}
               width={600}
               height={500}
-            />
+            /> */}
           </div>
         </section>
         <section className="max-w-80">
