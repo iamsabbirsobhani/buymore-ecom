@@ -21,7 +21,7 @@ export default async function ProductContainer({ gender }: { gender: string }) {
   // console.log({ products: products.data });
   return (
     <div className="max-w-7xl m-auto mt-[5vh]">
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-5 gap-5">
         {products.data.map(
           (product: {
             id: string;

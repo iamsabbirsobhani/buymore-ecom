@@ -105,7 +105,7 @@ export default async function ProductDetails({ params }: Props) {
                       productPrice: number;
                       ProductDescriptions: { children: { text: string }[] }[];
                     }) => (
-                      <p key={product.id}>
+                      <ul key={product.id}>
                         {product.ProductDescriptions.map(
                           (description: { children: { text: string }[] }) =>
                             description.children.map(
@@ -114,7 +114,7 @@ export default async function ProductDetails({ params }: Props) {
                               ),
                             ),
                         )}
-                      </p>
+                      </ul>
                     ),
                   )}
                 </AccordionDetails>
@@ -151,16 +151,18 @@ export default async function ProductDetails({ params }: Props) {
                         children: { text: string }[];
                       }[];
                     }) => (
-                      <p key={product.id}>
+                      <ul key={product.id} className="list-disc">
                         {product.productSizeAndFit.map(
                           (sizeAndFit: { children: { text: string }[] }) =>
                             sizeAndFit.children.map(
                               (child: { text: string }, index: number) => (
-                                <li key={index}>{child.text}&nbsp;</li>
+                                <li className="list-disc" key={index}>
+                                  {child.text}&nbsp;
+                                </li>
                               ),
                             ),
                         )}
-                      </p>
+                      </ul>
                     ),
                   )}
                 </AccordionDetails>

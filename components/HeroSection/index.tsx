@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HeroSection() {
   return (
@@ -16,12 +17,18 @@ export default function HeroSection() {
         <div className="relative top-[15vh]">
           <ul className="flex justify-center items-center">
             <li className="m-1">
-              <button className="bg-gray-50 p-2 hover:bg-gray-300">
-                Women
-              </button>
+              <Link href="/products/women">
+                <button className="bg-gray-50 p-2 hover:bg-gray-300">
+                  Women
+                </button>
+              </Link>
             </li>
             <li className="m-1">
-              <button className="bg-gray-50 p-2 hover:bg-gray-300">Men</button>
+              <Link href="/products/men">
+                <button className="bg-gray-50 p-2 hover:bg-gray-300">
+                  Men
+                </button>
+              </Link>
             </li>
             <li className="m-1">
               <button className="bg-gray-50 p-2 hover:bg-gray-300">Kids</button>
@@ -51,9 +58,11 @@ export default function HeroSection() {
               <h1 className="text-4xl tracking-wide font-bold text-gray-50">
                 Denim & animal print
               </h1>
-              <button className="bg-gray-50 w-fit mt-3 p-2 hover:bg-gray-300">
-                Shop now
-              </button>
+              <Link href="/products/women">
+                <button className="bg-gray-50 w-fit mt-3 p-2 hover:bg-gray-300">
+                  Shop now
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -75,9 +84,11 @@ export default function HeroSection() {
               <p className="text-gray-50 text-xl mt-3 mb-3">
                 Relaxed minimalism for a wider silhouette.
               </p>
-              <button className="bg-gray-50 w-fit mt-3 p-2 hover:bg-gray-300">
-                Shop now
-              </button>
+              <Link href="/products/men">
+                <button className="bg-gray-50 w-fit mt-3 p-2 hover:bg-gray-300">
+                  Shop now
+                </button>
+              </Link>
             </div>
           </div>
         </div>
