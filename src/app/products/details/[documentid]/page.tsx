@@ -1,4 +1,10 @@
 import Image from 'next/image';
+import Accordion from '@mui/joy/Accordion';
+import AccordionDetails from '@mui/joy/AccordionDetails';
+import AccordionGroup from '@mui/joy/AccordionGroup';
+import AccordionSummary from '@mui/joy/AccordionSummary';
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
 
 type Props = {
   params: Promise<{ documentid: string }>;
@@ -28,14 +34,16 @@ export default async function ProductDetails({ params }: Props) {
   // console.log({ inventories: inventories.data });
   return (
     <div className="max-w-7xl m-auto mt-[5vh]">
-      <div className="grid grid-cols-2 content-center">
-        <section>
-          <Image
-            src={product.data[0].productImages[1]?.formats?.small?.url || ''}
-            alt={product.data[0].productName}
-            width={600}
-            height={500}
-          />
+      <div className="grid grid-cols-2 content-center gap-10">
+        <section className="">
+          <div className="max-w-sm relative ml-auto mr-3">
+            <Image
+              src={product.data[0].productImages[1]?.formats?.small?.url || ''}
+              alt={product.data[0].productName}
+              width={600}
+              height={500}
+            />
+          </div>
         </section>
         <section>
           <h1 className="text-gray-700 font-light text-base">
@@ -44,44 +52,72 @@ export default async function ProductDetails({ params }: Props) {
           <p className="mt-2 font-bold text-base text-gray-600">
             $&nbsp;{product.data[0].productPrice}.00
           </p>
-          <div className="lowercase font-light text-lg flex items-center mt-3">
-            <h1 className="text-sm font-bold mr-2 uppercase">COLOUR:</h1>
-            {Array.from(
-              new Set(
-                inventories.data.map(
-                  (inventory: {
-                    id: string;
-                    product_color: { colorName: string; id: string };
-                  }) => inventory.product_color.colorName,
-                ),
-              ) as Set<string>,
-            ).map((uniqueColor: string) => (
-              <div key={uniqueColor} className="ml-2">
-                <div
-                  className={`bg-[${uniqueColor.toLowerCase()}] border w-10 h-10`}
-                  title={uniqueColor}
-                ></div>
-              </div>
-            ))}
-          </div>
+
           <p className="font-bold text-sm mt-2">Size:</p>
-          <select name="" id="" className="border w-60 p-2 px-4 mt-2">
+          <Select
+            color="neutral"
+            disabled={false}
+            placeholder="Select size"
+            size="md"
+            variant="outlined"
+            className="w-60 p-2 px-4 mt-2"
+          >
             {inventories.data.map(
               (inventory: {
                 id: string;
                 size: { sizeName: string; id: string };
                 quantity: number;
               }) => (
-                <option key={inventory.id} value={inventory.size.sizeName}>
+                <Option key={inventory.id} value={inventory.size.sizeName}>
                   {inventory.size.sizeName} &nbsp; {inventory.quantity} in stock
-                </option>
+                </Option>
               ),
             )}
-          </select>
-          <div className="mt-3">
+          </Select>
+          <div className="mt-5">
             <button className="uppercase bg-green-700 p-2 text-gray-50 px-3 w-60">
               Add to bag
             </button>
+          </div>
+
+          <div className="mt-5">
+            <AccordionGroup sx={{ maxWidth: 400 }}>
+              <Accordion>
+                <AccordionSummary>Product Details</AccordionSummary>
+                <AccordionDetails>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary>Brand</AccordionSummary>
+                <AccordionDetails>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary>Size & Fit</AccordionSummary>
+                <AccordionDetails>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary>Look After Me</AccordionSummary>
+                <AccordionDetails>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary>About Me</AccordionSummary>
+                <AccordionDetails>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </AccordionDetails>
+              </Accordion>
+            </AccordionGroup>
           </div>
         </section>
       </div>
