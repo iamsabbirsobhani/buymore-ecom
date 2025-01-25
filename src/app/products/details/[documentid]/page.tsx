@@ -47,7 +47,7 @@ export default async function ProductDetails({ params }: Props) {
             />
           </div>
         </section>
-        <section>
+        <section className="max-w-80">
           <h1 className="text-gray-700 font-light text-base">
             {product.data[0].productName}
           </h1>
@@ -62,7 +62,7 @@ export default async function ProductDetails({ params }: Props) {
             placeholder="Select size"
             size="md"
             variant="outlined"
-            className="w-60 p-2 px-4 mt-2"
+            className=" p-2 px-4 mt-2"
           >
             {inventories.data.map(
               (inventory: {
@@ -76,10 +76,26 @@ export default async function ProductDetails({ params }: Props) {
               ),
             )}
           </Select>
-          <div className="mt-5">
+          <div className="mt-5 flex items-center justify-between">
             <button className="uppercase bg-green-700 p-2 text-gray-50 px-3 w-60">
               Add to bag
             </button>
+            <div className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center mr-3 group cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6 group-hover:text-green-700 group-hover:fill-green-700"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                />
+              </svg>
+            </div>
           </div>
 
           <div className="mt-5">
