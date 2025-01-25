@@ -20,8 +20,8 @@ export default async function ProductContainer({ gender }: { gender: string }) {
   const products = await getProducts(gender);
   // console.log({ products: products.data });
   return (
-    <div>
-      <div className="flex justify-center flex-wrap">
+    <div className="max-w-7xl m-auto mt-[5vh]">
+      <div className="grid grid-cols-4 gap-5">
         {products.data.map(
           (product: {
             id: string;

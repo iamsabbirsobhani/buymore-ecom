@@ -37,14 +37,8 @@ export default async function ProductDetails({ params }: Props) {
     <div className="max-w-7xl m-auto mt-[5vh]">
       <div className="grid grid-cols-2 content-center gap-10">
         <section className="">
-          <div className="max-w-sm relative ml-auto mr-3">
+          <div className="max-w-lg relative ml-auto mr-3">
             <ProductImageViewer product={product.data} />
-            {/* <Image
-              src={product.data[0].productImages[1]?.formats?.small?.url || ''}
-              alt={product.data[0].productName}
-              width={600}
-              height={500}
-            /> */}
           </div>
         </section>
         <section className="max-w-80">
@@ -116,7 +110,7 @@ export default async function ProductDetails({ params }: Props) {
                           (description: { children: { text: string }[] }) =>
                             description.children.map(
                               (child: { text: string }, index: number) => (
-                                <span key={index}>{child.text}&nbsp;</span>
+                                <li key={index}>{child.text}&nbsp;</li>
                               ),
                             ),
                         )}
@@ -136,7 +130,7 @@ export default async function ProductDetails({ params }: Props) {
                       <p key={index}>
                         {brand.children.map(
                           (child: { text: string }, index: number) => (
-                            <span key={index}>{child.text}&nbsp;</span>
+                            <span key={index}>{child.text}</span>
                           ),
                         )}
                       </p>
@@ -147,7 +141,6 @@ export default async function ProductDetails({ params }: Props) {
               <Accordion>
                 <AccordionSummary>Size & Fit</AccordionSummary>
                 <AccordionDetails>
-                  {product.data[0].productSizeAndFit[0].children[0].text}
                   {product.data.map(
                     (product: {
                       id: string;
@@ -163,7 +156,7 @@ export default async function ProductDetails({ params }: Props) {
                           (sizeAndFit: { children: { text: string }[] }) =>
                             sizeAndFit.children.map(
                               (child: { text: string }, index: number) => (
-                                <span key={index}>{child.text}&nbsp;</span>
+                                <li key={index}>{child.text}&nbsp;</li>
                               ),
                             ),
                         )}
@@ -175,7 +168,6 @@ export default async function ProductDetails({ params }: Props) {
               <Accordion>
                 <AccordionSummary>Look After Me</AccordionSummary>
                 <AccordionDetails>
-                  {product.data[0].productLookAfterMe[0].children[0].text}
                   {product.data.map(
                     (product: {
                       id: string;
@@ -211,7 +203,9 @@ export default async function ProductDetails({ params }: Props) {
           </div>
         </section>
       </div>
-      {/* <p>{product.data[0].ProductDescriptions}</p> */}
+      <section>
+        <div className="h-[1px] w-full bg-gray-200 mt-[5vh]"></div>
+      </section>
     </div>
   );
 }
