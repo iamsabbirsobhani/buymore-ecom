@@ -10,10 +10,41 @@ import Link from '@mui/joy/Link';
 // import Typography from '@mui/joy/Typography';
 import HomeIcon from '@mui/icons-material/Home';
 import RelatedProducts from '@/components/RelatedProducts';
+import type { Metadata, ResolvingMetadata } from 'next';
+
 type Props = {
   params: Promise<{ documentid: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const productDocumentID = (await params).documentid;
+
+  const product = await getProduct(productDocumentID);
+
+  const previousImages = (await parent).openGraph?.images || [];
+  return {
+    title: product.data[0].productName + ' | Buy More',
+    description: product.data[0].ProductDescriptions.map(
+      (item: { type: string; children: [{ text: string }] }) =>
+        item.children.map((child: { text: string }) => child.text).join(' '),
+    ),
+    openGraph: {
+      title: product.data[0].productName + ' | Buy More',
+      description: product.data[0].ProductDescriptions.map(
+        (item: { type: string; children: [{ text: string }] }) =>
+          item.children.map((child: { text: string }) => child.text).join(' '),
+      ),
+      images: [
+        product.data[0].productImages[0].formats.small.url,
+        ...previousImages,
+      ],
+    },
+  };
+}
 
 const getProduct = async (documentId: string) => {
   const res = await fetch(
@@ -38,6 +69,9 @@ export default async function ProductDetails({ params }: Props) {
   //   product: product.data[0],
   // });
   // console.log({ inventories: inventories.data });
+  // console.log({
+  //   ProductImage: product.data[0].productImages[0].formats.small.url,
+  // });
   return (
     <div className="max-w-7xl m-auto mt-[5vh]">
       <div className="mb-[2vh] mt-[2vh]">
