@@ -29,7 +29,7 @@ export default async function ProductContainer({ gender }: { gender: string }) {
         <Breadcrumbs aria-label="breadcrumbs">
           <MuiLink color="primary" href="/">
             <div className="text-sm flex items-center text-gray-600">
-              <HomeIcon className="w-4" sx={{ mr: 0.5 }} />
+              <HomeIcon className="w-4 h-4" sx={{ mr: 0.5 }} />
               Buy More
             </div>
           </MuiLink>
