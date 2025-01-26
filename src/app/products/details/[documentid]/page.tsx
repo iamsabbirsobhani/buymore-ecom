@@ -59,7 +59,9 @@ export default async function ProductDetails({ params }: Props) {
             <p className="text-sm text-gray-600">
               {product && product.data[0].product_gender.GenderName === 'Female'
                 ? 'Women'
-                : 'Men'}
+                : product.data[0].product_gender.GenderName === 'Male'
+                ? 'Men'
+                : product.data[0].product_gender.GenderName}
             </p>
           </Link>
           <Link color="primary" href="#">

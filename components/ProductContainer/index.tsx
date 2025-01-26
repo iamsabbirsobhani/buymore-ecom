@@ -9,7 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 const getProducts = async (gender: string) => {
   try {
     const response = await fetch(
-      `https://apistorehub.azurewebsites.net/api/products?populate=productImages&filters[product_gender][GenderName][$eq]=${gender}`,
+      `https://apistorehub.azurewebsites.net/api/products?populate=productImages&filters[product_gender][GenderName][$eq]=${gender}&filters[product_gender][GenderName][$eq]=Unisex&populate=product_gender`,
       { cache: 'no-store' }, // Use `no-store` for dynamic data
     );
     const data = await response.json();
