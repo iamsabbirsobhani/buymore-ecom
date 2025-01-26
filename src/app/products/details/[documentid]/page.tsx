@@ -9,6 +9,7 @@ import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
 // import Typography from '@mui/joy/Typography';
 import HomeIcon from '@mui/icons-material/Home';
+import RelatedProducts from '@/components/RelatedProducts';
 type Props = {
   params: Promise<{ documentid: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -16,7 +17,7 @@ type Props = {
 
 const getProduct = async (documentId: string) => {
   const res = await fetch(
-    `https://apistorehub.azurewebsites.net/api/products?filters[documentId][$eq]=${documentId}&populate[productImages]=true&populate[product_gender]=true`,
+    `https://apistorehub.azurewebsites.net/api/products?filters[documentId][$eq]=${documentId}&populate[productImages]=true&populate[product_gender]=true&populate[product_type]=true`,
   );
   const product = await res.json();
   return product;
@@ -33,9 +34,9 @@ export default async function ProductDetails({ params }: Props) {
   const productDocumentID = (await params).documentid;
   const product = await getProduct(productDocumentID);
   const inventories = await getInventories(productDocumentID);
-  console.log({
-    product: product.data[0].product_gender.GenderName,
-  });
+  // console.log({
+  //   product: product.data[0],
+  // });
   // console.log({ inventories: inventories.data });
   return (
     <div className="max-w-7xl m-auto mt-[5vh]">
@@ -59,6 +60,11 @@ export default async function ProductDetails({ params }: Props) {
               {product && product.data[0].product_gender.GenderName === 'Female'
                 ? 'Women'
                 : 'Men'}
+            </p>
+          </Link>
+          <Link color="primary" href="#">
+            <p className="text-sm text-gray-600">
+              {product.data[0].product_type.productTypeName}
             </p>
           </Link>
           {[product.data[0].productName].map((item: string) => (
@@ -242,6 +248,20 @@ export default async function ProductDetails({ params }: Props) {
       </div>
       <section>
         <div className="h-[1px] w-full bg-gray-200 mt-[5vh]"></div>
+      </section>
+      <section>
+        <div>
+          <h1 className="uppercase text-lg mt-2 mb-[5vh] font-bold">
+            You might also like
+          </h1>
+        </div>
+        <div>
+          <RelatedProducts
+            gender={product.data[0].product_gender.GenderName}
+            type={product.data[0].product_type.productTypeName}
+            id={product.data[0].documentId}
+          />
+        </div>
       </section>
     </div>
   );
