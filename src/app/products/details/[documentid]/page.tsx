@@ -43,7 +43,7 @@ export default async function ProductDetails({ params }: Props) {
         <Breadcrumbs aria-label="breadcrumbs">
           <Link color="primary" href="/">
             <div className="text-sm flex items-center text-gray-600">
-              <HomeIcon className="w-5" sx={{ mr: 0.5 }} />
+              <HomeIcon className="w-4" sx={{ mr: 0.5 }} />
               Buy More
             </div>
           </Link>
