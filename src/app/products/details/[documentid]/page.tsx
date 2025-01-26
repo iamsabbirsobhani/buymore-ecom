@@ -5,6 +5,10 @@ import AccordionSummary from '@mui/joy/AccordionSummary';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import ProductImageViewer from '@/components/ProductImageViewer';
+import Breadcrumbs from '@mui/joy/Breadcrumbs';
+import Link from '@mui/joy/Link';
+// import Typography from '@mui/joy/Typography';
+import HomeIcon from '@mui/icons-material/Home';
 type Props = {
   params: Promise<{ documentid: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -12,7 +16,7 @@ type Props = {
 
 const getProduct = async (documentId: string) => {
   const res = await fetch(
-    `https://apistorehub.azurewebsites.net/api/products?filters[documentId][$eq]=${documentId}&populate=productImages`,
+    `https://apistorehub.azurewebsites.net/api/products?filters[documentId][$eq]=${documentId}&populate[productImages]=true&populate[product_gender]=true`,
   );
   const product = await res.json();
   return product;
@@ -29,12 +33,43 @@ export default async function ProductDetails({ params }: Props) {
   const productDocumentID = (await params).documentid;
   const product = await getProduct(productDocumentID);
   const inventories = await getInventories(productDocumentID);
-  // console.log({
-  //   product: product.data[0].productLookAfterMe[0].children[0].text,
-  // });
+  console.log({
+    product: product.data[0].product_gender.GenderName,
+  });
   // console.log({ inventories: inventories.data });
   return (
     <div className="max-w-7xl m-auto mt-[5vh]">
+      <div className="mb-[2vh] mt-[2vh]">
+        <Breadcrumbs aria-label="breadcrumbs">
+          <Link color="primary" href="/">
+            <div className="text-sm flex items-center text-gray-600">
+              <HomeIcon className="w-5" sx={{ mr: 0.5 }} />
+              Buy More
+            </div>
+          </Link>
+          <Link
+            color="primary"
+            href={
+              product && product.data[0].product_gender.GenderName === 'Female'
+                ? '/products/women'
+                : '/products/men'
+            }
+          >
+            <p className="text-sm text-gray-600">
+              {product && product.data[0].product_gender.GenderName === 'Female'
+                ? 'Women'
+                : 'Men'}
+            </p>
+          </Link>
+          {[product.data[0].productName].map((item: string) => (
+            <Link key={item} color="neutral" href="#">
+              <p className="break-words text-sm">
+                {item.slice(0, 60)} {item.length > 60 ? '...' : ''}
+              </p>
+            </Link>
+          ))}
+        </Breadcrumbs>
+      </div>
       <div className="grid grid-cols-2 content-center gap-10">
         <section className="">
           <div className="max-w-lg relative ml-auto mr-3">

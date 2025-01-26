@@ -1,6 +1,10 @@
 import { ProductImage } from '@/types';
 import ProductCard from '../ProductCard';
-import Link from 'next/link';
+// import Link from 'next/link';
+import MuiLink from '@mui/joy/Link';
+import Breadcrumbs from '@mui/joy/Breadcrumbs';
+import Typography from '@mui/joy/Typography';
+import HomeIcon from '@mui/icons-material/Home';
 
 const getProducts = async (gender: string) => {
   try {
@@ -20,8 +24,27 @@ export default async function ProductContainer({ gender }: { gender: string }) {
   const products = await getProducts(gender);
   // console.log({ products: products.data });
   return (
-    <div className="max-w-7xl m-auto mt-[5vh]">
-      <div className="grid grid-cols-5 gap-5">
+    <div className="max-w-7xl m-auto mt-[3vh]">
+      <div className="mb-[2vh] mt-[2vh]">
+        <Breadcrumbs aria-label="breadcrumbs">
+          <MuiLink color="primary" href="/">
+            <div className="text-sm flex items-center text-gray-600">
+              <HomeIcon className="w-5" sx={{ mr: 0.5 }} />
+              Buy More
+            </div>
+          </MuiLink>
+          {[gender === 'Female' ? 'Women' : 'Men'].map((item: string) => (
+            <MuiLink key={item} color="neutral" href="#">
+              <p className="text-sm text-gray-600">{item}</p>
+            </MuiLink>
+          ))}
+          <Typography>
+            <span className="text-sm font-semibold text-red-500">Buy More</span>{' '}
+            Products
+          </Typography>
+        </Breadcrumbs>
+      </div>
+      <div className="grid grid-cols-5 gap-5 text-gray-600">
         {products.data.map(
           (product: {
             id: string;
@@ -30,7 +53,7 @@ export default async function ProductContainer({ gender }: { gender: string }) {
             productPrice: number;
             productImages: ProductImage[];
           }) => (
-            <Link
+            <MuiLink
               href={`/products/details/${product.documentId}`}
               key={product.id}
             >
@@ -40,7 +63,7 @@ export default async function ProductContainer({ gender }: { gender: string }) {
                 title={product.productName}
                 price={product.productPrice}
               />
-            </Link>
+            </MuiLink>
           ),
         )}
       </div>

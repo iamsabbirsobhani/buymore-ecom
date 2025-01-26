@@ -8,10 +8,10 @@ export default async function Products({ params }: Props) {
   // console.log({ gender });
   return (
     <div>
-      <h1 className="text-center m-2 text-sm text-gray-700">
+      {/* <h1 className="text-center m-2 text-sm text-gray-700">
         {gender === 'men' ? 'Men' : gender === 'women' ? 'Women' : 'Unisex'}
         &nbsp; Products
-      </h1>
+      </h1> */}
       <ProductContainer
         gender={
           gender === 'men' ? 'Male' : gender === 'women' ? 'Female' : 'Unisex'
